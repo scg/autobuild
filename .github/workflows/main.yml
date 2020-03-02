@@ -1,6 +1,6 @@
 #=================================================
 #   Description: Build G-DOCK FROM LEAN'S LEDE
-#   Author: 
+#   Author: //
 #=================================================
 
 name: Build G-DOCK
@@ -13,8 +13,8 @@ on:
       - master
   # schedule:
   #   - cron: 0 8 * * 5
-  watch:
-    types: started
+  # watch:
+  #   types: started
 
 jobs:
   build:
@@ -54,10 +54,8 @@ jobs:
 
     - name: Load custom configuration
       run: |
-        chmod +x diy.sh
-        ./diy.sh
-        cp -f custom.config ./lede/.config
         cd lede
+        cp -f ../custom.config .config
         make defconfig
 
     - name: Download package
