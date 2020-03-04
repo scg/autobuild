@@ -3,7 +3,7 @@
 #   Author: //
 #=================================================
 
-name: Build G-DOCK
+name: Build firmware
 
 on:
   release:
@@ -37,20 +37,20 @@ jobs:
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
 
-    - name: Clone source code
-      run: |
-        git clone https://github.com/coolsnowwolf/lede lede
+    # - name: Clone source code
+    #   run: |
+    #     git clone https://github.com/coolsnowwolf/lede lede
         
-    - name: Clone passwall code    
-      run: |
-        cd lede/package
-        git clone https://github.com/Lienol/openwrt-package.git                 
+    # - name: Clone passwall code
+    #   run: |
+    #     cd lede/package
+    #     git clone https://github.com/Lienol/openwrt-package.git
 
-    - name: Update feeds
-      run: |
-        cd lede
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
+    # - name: Update feeds
+    #   run: |
+    #     cd lede
+    #     ./scripts/feeds update -a
+    #     ./scripts/feeds install -a
 
     - name: Load custom configuration
       run: |
@@ -65,21 +65,21 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Compile firmware
-      id: compile
-      run: |
-        cd lede
-        echo -e "$(nproc) thread compile"
-        make -j$(nproc) V=s
+    # - name: Compile firmware
+    #   id: compile
+    #   run: |
+    #     cd lede
+    #     echo -e "$(nproc) thread compile"
+    #     make -j$(nproc) V=s
 
     - name: Copy custom configuration
       run: |
         cd lede
-        cp .config ./bin/targets/ipq40xx/generic/custom.config  
+        cp .config ./bin/targets/ipq40xx/generic/custom.config
 
     - name: Upload artifact
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success'
       with:
-        name: G-DOCK
+        name: Firmware-$(date +%Y%m%d%H%k%M)
         path: ./lede/bin
