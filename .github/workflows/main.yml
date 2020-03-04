@@ -58,12 +58,12 @@ jobs:
         cp -f ../custom.config .config
         make defconfig
 
-    - name: Download package
-      run: |
-        cd lede
-        make download -j$(nproc)
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+    # - name: Download package
+    #   run: |
+    #     cd lede
+    #     make download -j$(nproc)
+    #     find dl -size -1024c -exec ls -l {} \;
+    #     find dl -size -1024c -exec rm -f {} \;
 
     # - name: Compile firmware
     #   id: compile
