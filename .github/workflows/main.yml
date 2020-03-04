@@ -80,7 +80,7 @@ jobs:
 
     - name: Upload artifact
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
+      # if: steps.compile.outputs.status == 'success'
       with:
         name: Firmware-$(date +%Y%m%d%H%k%M)
         path: ./lede/bin
