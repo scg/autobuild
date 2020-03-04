@@ -75,7 +75,7 @@ jobs:
     - name: Copy custom configuration
       run: |
         cd lede
-        make -p ./bin/targets/ipq40xx/generic
+        mkdir -p ./bin/targets/ipq40xx/generic
         cp .config ./bin/targets/ipq40xx/generic/custom.config
 
     - name: Upload artifact
