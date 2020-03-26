@@ -60,12 +60,10 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile firmware
-      id: compile
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) V=s
-        echo "::set-output name=status::success"
 
     - name: Copy custom configuration
       run: |
@@ -74,7 +72,6 @@ jobs:
 
     - name: Upload artifact
       uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success'
       with:
         name: r619ac-firmware
         path: ./openwrt/bin
