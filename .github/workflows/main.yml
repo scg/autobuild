@@ -76,5 +76,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: steps.compile.outputs.status == 'success'
       with:
-        name: firmware
+        name: r619ac-firmware
         path: ./openwrt/bin
