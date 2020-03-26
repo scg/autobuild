@@ -60,18 +60,29 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile firmware
+      id: compile
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) V=s
+        version=$(date +%Y%m%d)
+        echo "::set-output name=version::${version}"
 
     - name: Copy custom configuration
       run: |
         cd openwrt
         cp .config ./bin/targets/ipq40xx/generic/custom.config
 
-    - name: Upload artifact
+    - name: Upload package
       uses: actions/upload-artifact@master
       with:
-        name: r619ac-firmware
+        name: r619ac-package-${{ steps.compile.outputs.version }}
         path: ./openwrt/bin
+
+    - name: Upload firmware
+      run: |
+        rm -rf ./openwrt/bin/targets/ipq40xx/generic/packages
+      uses: actions/upload-artifact@master
+      with:
+        name: r619ac-firmware-${{ steps.compile.outputs.version }}
+        path: ./openwrt/bin/targets/ipq40xx/generic
