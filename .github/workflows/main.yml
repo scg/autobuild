@@ -65,6 +65,7 @@ jobs:
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc) V=s
+        echo "::set-output name=status::success"
 
     - name: Copy custom configuration
       run: |
