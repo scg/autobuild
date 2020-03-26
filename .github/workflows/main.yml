@@ -79,10 +79,12 @@ jobs:
         name: r619ac-package-${{ steps.compile.outputs.version }}
         path: ./openwrt/bin
 
+    - name: Delete package
+      run: |
+        rm -rf ./openwrt/bin/targets/ipq40xx/generic/packages/
+
     - name: Upload firmware
       uses: actions/upload-artifact@master
       with:
         name: r619ac-firmware-${{ steps.compile.outputs.version }}
-        path: 
-          - ./openwrt/bin/targets/ipq40xx/generic
-          - '!./openwrt/bin/targets/ipq40xx/generic/packages/**'
+        path: ./openwrt/bin/targets/ipq40xx/generic
