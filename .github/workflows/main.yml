@@ -80,9 +80,9 @@ jobs:
         path: ./openwrt/bin
 
     - name: Upload firmware
-      run: |
-        rm -rf ./openwrt/bin/targets/ipq40xx/generic/packages
       uses: actions/upload-artifact@master
       with:
         name: r619ac-firmware-${{ steps.compile.outputs.version }}
-        path: ./openwrt/bin/targets/ipq40xx/generic
+        path: 
+          - ./openwrt/bin/targets/ipq40xx/generic
+          - '!./openwrt/bin/targets/ipq40xx/generic/packages/**'
