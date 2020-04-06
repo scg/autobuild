@@ -60,7 +60,7 @@ jobs:
           cd openwrt
           echo -e "$(nproc) thread compile"
           make -j$(nproc) V=s
-          version=$(date +%Y%m%d)
+          version=$(date +%Y%m%d%H%M)
           echo "::set-output name=version::${version}"
           echo "::set-output name=status::success"
 
