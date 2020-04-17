@@ -49,6 +49,7 @@ LuCI
 		* luci-app-wrtbwmon
 		- luci-app-xlnetacc
 		- luci-app-zerotier
+
 Network
 	File Transfer
 		* curl
@@ -57,8 +58,6 @@ Network
 	Firewall
 		miniupnpd
 			* Enable IGDv2
-	- iw
-	* iw-full
 	
 Utilities
 	Compression
