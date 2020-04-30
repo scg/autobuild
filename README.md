@@ -22,8 +22,6 @@ Extra packages
 	* ipv6helper
 
 Kernel modules
-	Filesystems
-		- kmod-fs-cifs
 	Netfilter Extensions
 		* kmod-ipt-raw6
 	Network Support
