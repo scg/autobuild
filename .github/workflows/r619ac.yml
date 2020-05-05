@@ -26,7 +26,7 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          echo $REGISTRY_URL;exit 1
+          if [ $REGISTRY_URL == 'https://docker.repo.lanseyujie.com/wildlife/' ]; then docker --verison; exit 1; fi
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
