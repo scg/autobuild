@@ -38,7 +38,6 @@ LuCI
 	Applications
 		- luci-app-ddns
 		- luci-app-ipsec-vpnd
-		- luci-app-music-remote-center
 		luci-app-ssr-plus
 			* Include Kcptun
 		luci-app-unblockmusic
